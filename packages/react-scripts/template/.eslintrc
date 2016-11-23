@@ -1,0 +1,24 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "react-app",
+    "standard",
+    "standard-react"
+  ],
+  "plugins": [
+    "babel",
+    "react",
+    "promise"
+  ],
+  "rules": {
+    "indent"                : [1, 4, {"SwitchCase": 1}],
+    "jsx-quotes"            : [1, "prefer-single"],
+    "key-spacing"           : 0,
+    "max-len"               : [1, 120, 2],
+    "no-unused-vars"        : [1, {"varsIgnorePattern": "^__"}],
+    "object-curly-spacing"  : [1, "always"],
+    "react/jsx-indent"      : [1, 4],
+    "react/jsx-indent-props": [1, 4],
+    "semi"                  : [1, "never"]
+  }
+}
