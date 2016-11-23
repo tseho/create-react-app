@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { IndexLink, Link } from 'react-router'
-import { ReduxDebugPanel } from 'react-redux-app-container-devtools'
 import logo from './logo.svg'
 import './App.css'
 
@@ -23,9 +22,6 @@ class App extends Component {
                 <div>
                     {this.props.children}
                 </div>
-                {process.env.NODE_ENV === 'development' && ReduxDebugPanel &&
-                    <ReduxDebugPanel />
-                }
             </div>
         )
     }
