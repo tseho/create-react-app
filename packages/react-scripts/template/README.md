@@ -1,7 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/tseho/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/tseho/create-react-app/blob/master/packages/react-scripts/template/README.md).
+You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Table of Contents
 
@@ -13,13 +13,18 @@ You can find the most recent version of this guide [here](https://github.com/tse
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
+- [Syntax Highlighting in the Editor](#syntax-highlighting-in-the-editor)
 - [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor)
+- [Changing the Page `<title>`](#changing-the-page-title)
 - [Installing a Dependency](#installing-a-dependency)
 - [Importing a Component](#importing-a-component)
 - [Adding a Stylesheet](#adding-a-stylesheet)
 - [Post-Processing CSS](#post-processing-css)
 - [Adding Images and Fonts](#adding-images-and-fonts)
 - [Using the `public` Folder](#using-the-public-folder)
+  - [Changing the HTML](#changing-the-html)
+  - [Adding Assets Outside of the Module System](#adding-assets-outside-of-the-module-system)
+  - [When to Use the `public` Folder](#when-to-use-the-public-folder)
 - [Using Global Variables](#using-global-variables)
 - [Adding Bootstrap](#adding-bootstrap)
 - [Adding Flow](#adding-flow)
@@ -42,9 +47,13 @@ You can find the most recent version of this guide [here](https://github.com/tse
   - [Continuous Integration](#continuous-integration)
   - [Disabling jsdom](#disabling-jsdom)
   - [Experimental Snapshot Testing](#experimental-snapshot-testing)
+  - [Editor Integration](#editor-integration)
 - [Developing Components in Isolation](#developing-components-in-isolation)
+- [Making a Progressive Web App](#making-a-progressive-web-app)
 - [Deployment](#deployment)
+  - [Serving Apps with Client-Side Routing](#serving-apps-with-client-side-routing)
   - [Building for Relative Paths](#building-for-relative-paths)
+  - [Firebase](#firebase)
   - [GitHub Pages](#github-pages)
   - [Heroku](#heroku)
   - [Modulus](#modulus)
@@ -52,6 +61,10 @@ You can find the most recent version of this guide [here](https://github.com/tse
   - [Now](#now)
   - [S3 and CloudFront](#s3-and-cloudfront)
   - [Surge](#surge)
+- [Troubleshooting](#troubleshooting)
+  - [`npm test` hangs on macOS Sierra](#npm-test-hangs-on-macos-sierra)
+  - [`npm run build` silently fails](#npm-run-build-silently-fails)
+  - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku)
 - [Something Missing?](#something-missing)
 
 ## Updating to New Releases
@@ -65,15 +78,15 @@ You almost never need to update `create-react-app` itself: it delegates all the 
 
 When you run `create-react-app`, it always creates the project with the latest version of `react-scripts` so you’ll get all the new features and improvements in newly created apps automatically.
 
-To update an existing project to a new version of `react-scripts`, [open the changelog](https://github.com/tseho/create-react-app/blob/master/CHANGELOG.md), find the version you’re currently on (check `package.json` in this folder if you’re not sure), and apply the migration instructions for the newer versions.
+To update an existing project to a new version of `react-scripts`, [open the changelog](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md), find the version you’re currently on (check `package.json` in this folder if you’re not sure), and apply the migration instructions for the newer versions.
 
-In most cases bumping the `react-scripts` version in `package.json` and running `npm install` in this folder should be enough, but it’s good to consult the [changelog](https://github.com/tseho/create-react-app/blob/master/CHANGELOG.md) for potential breaking changes.
+In most cases bumping the `react-scripts` version in `package.json` and running `npm install` in this folder should be enough, but it’s good to consult the [changelog](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md) for potential breaking changes.
 
 We commit to keeping the breaking changes minimal so you can upgrade `react-scripts` painlessly.
 
 ## Sending Feedback
 
-We are always open to [your feedback](https://github.com/tseho/create-react-app/issues).
+We are always open to [your feedback](https://github.com/facebookincubator/create-react-app/issues).
 
 ## Folder Structure
 
@@ -137,6 +150,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
+See the section about [deployment](#deployment) for more information.
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
@@ -146,6 +161,10 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Syntax Highlighting in the Editor
+
+To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
 
 ## Displaying Lint Output in the Editor
 
@@ -181,6 +200,16 @@ npm install -g eslint-config-react-app@0.3.0 eslint@3.8.1 babel-eslint@7.0.0 esl
 ```
 
 We recognize that this is suboptimal, but it is currently required due to the way we hide the ESLint dependency. The ESLint team is already [working on a solution to this](https://github.com/eslint/eslint/issues/3458) so this may become unnecessary in a couple of months.
+
+## Changing the Page `<title>`
+
+You can find the source HTML file in the `public` folder of the generated project. You may edit the `<title>` tag in it to change the title from “React App” to anything else.
+
+Note that normally you wouldn't edit files in the `public` folder very often. For example, [adding a stylesheet](#adding-a-stylesheet) is is done without touching the HTML.
+
+If you need to dynamically update the page title based on the content, you can use the browser [`document.title`](https://developer.mozilla.org/en-US/docs/Web/API/Document/title) API. For more complex scenarios when you want to change the title from React components, you can use [React Helmet](https://github.com/nfl/react-helmet), a third party library.
+
+Finally, if you use a custom server for your app in production and want to modify the title before it gets sent to the browser, you can follow advice in [this section](#generating-dynamic-meta-tags-on-the-server).
 
 ## Installing a Dependency
 
@@ -347,7 +376,18 @@ An alternative way of handling static assets is described in the next section.
 
 >Note: this feature is available with `react-scripts@0.5.0` and higher.
 
-Normally we encourage you to `import` assets in JavaScript files as described above. This mechanism provides a number of benefits:
+### Changing the HTML
+
+The `public` folder contains the HTML file so you can tweak it, for example, to [set the page title](#changing-the-page-title).
+The `<script>` tag with the compiled code will be added to it automatically during the build process.
+
+### Adding Assets Outside of the Module System
+
+You can also add other assets to the `public` folder.
+
+Note that we normally we encourage you to `import` assets in JavaScript files instead.
+For example, see the sections on [adding a stylesheet](#adding-a-stylesheet) and [adding images and fonts](#adding-images-and-fonts).
+This mechanism provides a number of benefits:
 
 * Scripts and stylesheets get minified and bundled together to avoid extra network requests.
 * Missing files cause compilation errors instead of 404 errors for your users.
@@ -384,7 +424,15 @@ Keep in mind the downsides of this approach:
 * Missing files will not be called at compilation time, and will cause 404 errors for your users.
 * Result filenames won’t include content hashes so you’ll need to add query arguments or rename them every time they change.
 
-However, it can be handy for referencing assets like [`manifest.webmanifest`](https://developer.mozilla.org/en-US/docs/Web/Manifest) from HTML, or including small scripts like [`pace.js`](http://github.hubspot.com/pace/docs/welcome/) outside of the bundled code.
+### When to Use the `public` Folder
+
+Normally we recommend importing [stylesheets](#adding-a-stylesheet), [images, and fonts](#adding-images-and-fonts) from JavaScript.
+The `public` folder is useful as a workaround for a number of less common cases:
+
+* You need a file with a specific name in the build output, such as [`manifest.webmanifest`](https://developer.mozilla.org/en-US/docs/Web/Manifest).
+* You have thousands of images and need to dynamically reference their paths.
+* You want to include a small script like [`pace.js`](http://github.hubspot.com/pace/docs/welcome/) outside of the bundled code.
+* Some library may be incompatible with Webpack and you have no other option but to include it as a `<script>` tag.
 
 Note that if you add a `<script>` that declares global variables, you also need to read the next section on using them.
 
@@ -430,28 +478,21 @@ Now you are ready to use the imported React Bootstrap components within your com
 
 ## Adding Flow
 
-Flow typing is currently [not supported out of the box](https://github.com/tseho/create-react-app/issues/72) with the default `.flowconfig` generated by Flow. If you run it, you might get errors like this:
+Flow is a static type checker that helps you write code with fewer bugs. Check out this [introduction to using static types in JavaScript](https://medium.com/@preethikasireddy/why-use-static-types-in-javascript-part-1-8382da1e0adb) if you are new to this concept.
 
-```js
-node_modules/fbjs/lib/Deferred.js.flow:60
- 60:     Promise.prototype.done.apply(this._promise, arguments);
-                           ^^^^ property `done`. Property not found in
-495: declare class Promise<+R> {
-     ^ Promise. See lib: /private/tmp/flow/flowlib_34952d31/core.js:495
+Recent versions of [Flow](http://flowtype.org/) work with Create React App projects out of the box. 
 
-node_modules/fbjs/lib/shallowEqual.js.flow:29
- 29:     return x !== 0 || 1 / (x: $FlowIssue) === 1 / (y: $FlowIssue);
-                                   ^^^^^^^^^^ identifier `$FlowIssue`. Could not resolve name
-```
+To add Flow to a Create React App project, follow these steps:
 
-To fix this, change your `.flowconfig` to look like this:
+1. Run `npm install --save-dev flow-bin`.
+2. Add `"flow": "flow"` to the `scripts` section of your `package.json`.
+3. Add `// @flow` to any files you want to type check (for example, to `src/App.js`).
 
-```ini
-[ignore]
-<PROJECT_ROOT>/node_modules/fbjs/.*
-```
+Now you can run `npm run flow` to check the files for type errors.
+You can optionally use an IDE like [Nuclide](https://nuclide.io/docs/languages/flow/) for a better integrated experience.
+In the future we plan to integrate it into Create React App even more closely.
 
-Re-run flow, and you shouldn’t get any extra issues.
+To learn more about Flow, check out [its documentation](https://flowtype.org/).
 
 ## Adding Custom Environment Variables
 
@@ -556,8 +597,8 @@ Create React App doesn’t support decorator syntax at the moment because:
 However in many cases you can rewrite decorator-based code without decorators just as fine.<br>
 Please refer to these two threads for reference:
 
-* [#214](https://github.com/tseho/create-react-app/issues/214)
-* [#411](https://github.com/tseho/create-react-app/issues/411)
+* [#214](https://github.com/facebookincubator/create-react-app/issues/214)
+* [#411](https://github.com/facebookincubator/create-react-app/issues/411)
 
 Create React App will add decorator support when the specification advances to a stable stage.
 
@@ -645,7 +686,7 @@ If you use a Node server, you can even share the route matching logic between th
 ## Running Tests
 
 >Note: this feature is available with `react-scripts@0.3.0` and higher.<br>
->[Read the migration guide to learn how to enable it in older projects!](https://github.com/tseho/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
+>[Read the migration guide to learn how to enable it in older projects!](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
 
 Create React App uses [Jest](https://facebook.github.io/jest/) as its test runner. To prepare for this integration, we did a [major revamp](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html) of Jest so if you heard bad things about it years ago, give it another try.
 
@@ -807,7 +848,11 @@ Note that tests run much slower with coverage so it is recommended to run it sep
 
 ### Continuous Integration
 
-By default `npm test` runs the watcher with interactive CLI. However, you can force it to run tests once and finish the process by setting an environment variable called `CI`. Popular CI servers already set it by default but you can do this yourself too:
+By default `npm test` runs the watcher with interactive CLI. However, you can force it to run tests once and finish the process by setting an environment variable called `CI`.
+
+When creating a build of your application with `npm run build` linter warnings are not checked by default. Like `npm test`, you can force the build to perform a linter warning check by setting the environment variable `CI`. If any warnings are encountered then the build fails.
+
+Popular CI servers already set the environment variable `CI` by default but you can do this yourself too:
 
 ### On CI servers
 #### Travis CI
@@ -824,6 +869,7 @@ cache:
     - node_modules
 script:
   - npm test
+  - npm run build
 ```
 1. Trigger your first build with a git push.
 1. [Customize your Travis CI Build](https://docs.travis-ci.com/user/customizing-the-build/) if needed.
@@ -835,6 +881,10 @@ script:
 set CI=true&&npm test
 ```
 
+```cmd
+set CI=true&&npm run build
+```
+
 (Note: the lack of whitespace is intentional.)
 
 ##### Linux, OS X (Bash)
@@ -843,9 +893,15 @@ set CI=true&&npm test
 CI=true npm test
 ```
 
-This way Jest will run tests once instead of launching the watcher.
+```bash
+CI=true npm run build
+```
 
-If you find yourself doing this often in development, please [file an issue](https://github.com/tseho/create-react-app/issues/new) to tell us about your use case because we want to make watcher the best experience and are open to changing how it works to accommodate more workflows.
+The test command will force Jest to run tests once instead of launching the watcher.
+
+>  If you find yourself doing this often in development, please [file an issue](https://github.com/facebookincubator/create-react-app/issues/new) to tell us about your use case because we want to make watcher the best experience and are open to changing how it works to accommodate more workflows.
+
+The build command will check for linter warnings and fail if any are found.
 
 ### Disabling jsdom
 
@@ -872,13 +928,19 @@ In contrast, **jsdom is not needed** for the following APIs:
 * [`TestUtils.createRenderer()`](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering) (shallow rendering)
 * [`shallow()`](http://airbnb.io/enzyme/docs/api/shallow.html) in [Enzyme](http://airbnb.io/enzyme/index.html)
 
-Finally, jsdom is also not needed for [snapshot testing](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html). Longer term, this is the direction we are interested in exploring, but snapshot testing is [not fully baked yet](https://github.com/tseho/create-react-app/issues/372) so we don’t officially encourage its usage yet.
+Finally, jsdom is also not needed for [snapshot testing](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html). Longer term, this is the direction we are interested in exploring, but snapshot testing is [not fully baked yet](https://github.com/facebookincubator/create-react-app/issues/372) so we don’t officially encourage its usage yet.
 
 ### Experimental Snapshot Testing
 
 Snapshot testing is a new feature of Jest that automatically generates text snapshots of your components and saves them on the disk so if the UI output changes, you get notified without manually writing any assertions on the component output.
 
-This feature is experimental and still [has major usage issues](https://github.com/tseho/create-react-app/issues/372) so we only encourage you to use it if you like experimental technology. We intend to gradually improve it over time and eventually offer it as the default solution for testing React components, but this will take time. [Read more about snapshot testing.](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
+This feature is experimental and still [has major usage issues](https://github.com/facebookincubator/create-react-app/issues/372) so we only encourage you to use it if you like experimental technology. We intend to gradually improve it over time and eventually offer it as the default solution for testing React components, but this will take time. [Read more about snapshot testing.](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
+
+### Editor Integration
+
+If you use [Visual Studio Code](https://code.visualstudio.com), there is a [Jest extension](https://github.com/orta/vscode-jest) which works with Create React App out of the box. This provides a lot of IDE-like features while using a text editor: showing the status of a test run with potential fail messages inline, starting and stopping the watcher automatically, and offering one-click snapshot updates. 
+
+![VS Code Jest Preview](https://cloud.githubusercontent.com/assets/49038/20795349/a032308a-b7c8-11e6-9b34-7eeac781003f.png)
 
 ## Developing Components in Isolation
 
@@ -920,9 +982,57 @@ Learn more about React Storybook:
 * [Documentation](https://getstorybook.io/docs)
 * [Snapshot Testing](https://github.com/kadirahq/storyshots) with React Storybook
 
+## Making a Progressive Web App
+
+You can turn your React app into a [Progressive Web App](https://developers.google.com/web/progressive-web-apps/) by following the steps in [this repository](https://github.com/jeffposnick/create-react-pwa).
+
 ## Deployment
 
-## Building for Relative Paths
+`npm run build` creates a `build` directory with a production build of your app. Set up your favourite HTTP server so that a visitor to your site is served `index.html`, and requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file. For example, Python contains a built-in HTTP server that can serve static files:
+
+```sh
+cd build
+python -m SimpleHTTPServer 9000
+```
+
+If you're using [Node](https://nodejs.org/) and [Express](http://expressjs.com/) as a server, it might look like this:
+
+```javascript
+const express = require('express');
+const path = require('path');
+const app = express();
+
+app.use(express.static('./build'));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, './build', 'index.html'));
+});
+
+app.listen(9000);
+```
+
+Create React App is not opinionated about your choice of web server. Any static file server will do. The `build` folder with static assets is the only output produced by Create React App.
+
+However this is not quite enough if you use client-side routing. Read the next section if you want to support URLs like `/todos/42` in your single-page app.
+
+### Serving Apps with Client-Side Routing
+
+If you use routers that use the HTML5 [`pushState` history API](https://developer.mozilla.org/en-US/docs/Web/API/History_API#Adding_and_modifying_history_entries) under the hood (for example, [React Router](https://github.com/ReactTraining/react-router) with `browserHistory`), many static file servers will fail. For example, if you used React Router with a route for `/todos/42`, the development server will respond to `localhost:3000/todos/42` properly, but an Express serving a production build as above will not.
+
+This is because when there is a fresh page load for a `/todos/42`, the server looks for the file `build/todos/42` and does not find it. The server needs to be configured to respond to a request to `/todos/42` by serving `index.html`. For example, we can amend our Express example above to serve `index.html` for any unknown paths:
+
+```diff
+ app.use(express.static('./build'));
+
+-app.get('/', function (req, res) {
++app.get('/*', function (req, res) {
+   res.sendFile(path.join(__dirname, './build', 'index.html'));
+ });
+```
+
+Now requests to `/todos/42` will be handled correctly both in development and in production.
+
+### Building for Relative Paths
 
 By default, Create React App produces a build assuming your app is hosted at the server root.<br>
 To override this, specify the `homepage` in your `package.json`, for example:
@@ -933,14 +1043,76 @@ To override this, specify the `homepage` in your `package.json`, for example:
 
 This will let Create React App correctly infer the root path to use in the generated HTML file.
 
+
+### Firebase
+
+Install the Firebase CLI if you haven't already by running `npm install -g firebase-tools`. Sign up for a [Firebase account](https://console.firebase.google.com/) and create a new project. Run `firebase login` and login with your previous created Firebase account.
+
+Then run the `firebase init` command from your project's root. You need to choose the **Hosting: Configure and deploy Firebase Hosting sites** and choose the Firebase project you created in the previous step. You will need to agree with `database.rules.json` being created, choose `build` as the public directory, and also agree to **Configure as a single-page app** by replying with `y`.
+
+```sh
+    === Project Setup
+
+    First, let's associate this project directory with a Firebase project.
+    You can create multiple project aliases by running firebase use --add,
+    but for now we'll just set up a default project.
+
+    ? What Firebase project do you want to associate as default? Example app (example-app-fd690)
+
+    === Database Setup
+
+    Firebase Realtime Database Rules allow you to define how your data should be
+    structured and when your data can be read from and written to.
+
+    ? What file should be used for Database Rules? database.rules.json
+    ✔  Database Rules for example-app-fd690 have been downloaded to database.rules.json.
+    Future modifications to database.rules.json will update Database Rules when you run
+    firebase deploy.
+
+    === Hosting Setup
+
+    Your public directory is the folder (relative to your project directory) that
+    will contain Hosting assets to uploaded with firebase deploy. If you
+    have a build process for your assets, use your build's output directory.
+
+    ? What do you want to use as your public directory? build
+    ? Configure as a single-page app (rewrite all urls to /index.html)? Yes
+    ✔  Wrote build/index.html
+
+    i  Writing configuration info to firebase.json...
+    i  Writing project information to .firebaserc...
+
+    ✔  Firebase initialization complete!
+```
+
+Now, after you create a production build with `npm run build`, you can deploy it by running `firebase deploy`.
+
+```sh
+    === Deploying to 'example-app-fd690'...
+
+    i  deploying database, hosting
+    ✔  database: rules ready to deploy.
+    i  hosting: preparing build directory for upload...
+    Uploading: [==============================          ] 75%✔  hosting: build folder uploaded successfully
+    ✔  hosting: 8 files uploaded successfully
+    i  starting release process (may take several minutes)...
+
+    ✔  Deploy complete!
+
+    Project Console: https://console.firebase.google.com/project/example-app-fd690/overview
+    Hosting URL: https://example-app-fd690.firebaseapp.com
+```
+
+For more information see [Add Firebase to your JavaScript Project](https://firebase.google.com/docs/web/setup).
+
 ### GitHub Pages
 
 >Note: this feature is available with `react-scripts@0.2.0` and higher.
 
 #### Step 1: Add `homepage` to `package.json`
 
-**The below step is important!**<br>
-**If your skip it, your app will not deploy correctly.**
+**The step below is important!**<br>
+**If you skip it, your app will not deploy correctly.**
 
 Open your `package.json` and add a `homepage` field:
 
@@ -1000,7 +1172,21 @@ GitHub Pages doesn't support routers that use the HTML5 `pushState` history API 
 ### Heroku
 
 Use the [Heroku Buildpack for Create React App](https://github.com/mars/create-react-app-buildpack).<br>
-You can find instructions in [Deploying React with Zero Configuration](https://blog.heroku.com/deploying-react-with-zero-configuration).
+You can find instructions in [Deploying React with Zero Configuration](https://blog.heroku.com/deploying-react-with-zero-configuration). 
+
+#### Resolving "Module not found: Error: Cannot resolve 'file' or 'directory'"
+
+Sometimes `npm run build` works locally but fails during deploy via Heroku with an error like this:
+
+```  
+remote: Failed to create a production build. Reason:
+remote: Module not found: Error: Cannot resolve 'file' or 'directory' 
+MyDirectory in /tmp/build_1234/src  
+```
+
+This means you need to ensure that the lettercase of the file or directory you `import` matches the one you see on your filesystem or on GitHub.
+
+This is important because Linux (the operating system used by Heroku) is case sensitive. So `MyDirectory` and `mydirectory` are two distinct directories and thus, even though the project builds locally, the difference in case breaks the `import` statements on Heroku remotes.
 
 ### Modulus
 
@@ -1064,6 +1250,41 @@ Install the Surge CLI if you haven't already by running `npm install -g surge`. 
 
 Note that in order to support routers that use HTML5 `pushState` API, you may want to rename the `index.html` in your build folder to `200.html` before deploying to Surge. This [ensures that every URL falls back to that file](https://surge.sh/help/adding-a-200-page-for-client-side-routing).
 
+## Troubleshooting
+
+### `npm test` hangs on macOS Sierra
+
+If you run `npm test` and the console gets stuck after printing `react-scripts test --env=jsdom` to the console there might be a problem with your [Watchman](https://facebook.github.io/watchman/) installation as described in [facebookincubator/create-react-app#713](https://github.com/facebookincubator/create-react-app/issues/713).
+
+We recommend deleting `node_modules` in your project and running `npm install` (or `yarn` if you use it) first. If it doesn't help, you can try one of the numerous workarounds mentioned in these issues:
+
+* [facebook/jest#1767](https://github.com/facebook/jest/issues/1767)
+* [facebook/watchman#358](https://github.com/facebook/watchman/issues/358)
+* [ember-cli/ember-cli#6259](https://github.com/ember-cli/ember-cli/issues/6259)
+
+It is reported that installing Watchman 4.7.0 or newer fixes the issue. If you use [Homebrew](http://brew.sh/), you can run these commands to update it:
+
+```
+watchman shutdown-server
+brew update
+brew reinstall watchman
+```
+
+You can find [other installation methods](https://facebook.github.io/watchman/docs/install.html#build-install) on the Watchman documentation page.
+
+If this still doesn't help, try running `launchctl unload -F ~/Library/LaunchAgents/com.github.facebook.watchman.plist`.
+
+There are also reports that *uninstalling* Watchman fixes the issue. So if nothing else helps, remove it from your system and try again.
+
+### `npm run build` silently fails
+
+It is reported that `npm run build` can fail on machines with no swap space, which is common in cloud environments. If [the symptoms are matching](https://github.com/facebookincubator/create-react-app/issues/1133#issuecomment-264612171), consider adding some swap space to the machine you’re building on, or build the project locally.
+
+### `npm run build` fails on Heroku
+
+This may be a problem with case sensitive filenames.
+Please refer to [this section](#resolving-module-not-found-error-cannot-resolve-file-or-directory).
+
 ## Something Missing?
 
-If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/tseho/create-react-app/issues) or [contribute some!](https://github.com/tseho/create-react-app/edit/master/packages/react-scripts/template/README.md)
+If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)

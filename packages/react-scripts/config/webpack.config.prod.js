@@ -9,7 +9,6 @@
  */
 // @remove-on-eject-end
 
-var path = require('path');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -19,6 +18,11 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var url = require('url');
 var paths = require('./paths');
 var getClientEnvironment = require('./env');
+
+// @remove-on-eject-begin
+// `path` is not used after eject - see https://github.com/facebookincubator/create-react-app/issues/1174
+var path = require('path');
+// @remove-on-eject-end
 
 function ensureSlash(path, needsSlash) {
   var hasSlash = path.endsWith('/');
@@ -133,7 +137,8 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.css$/,
-          /\.json$/
+          /\.json$/,
+          /\.svg$/
         ],
         loader: 'url',
         query: {
@@ -175,6 +180,14 @@ module.exports = {
       {
         test: /\.json$/,
         loader: 'json'
+      },
+      // "file" loader for svg
+      {
+        test: /\.svg$/,
+        loader: 'file',
+        query: {
+          name: 'static/media/[name].[hash:8].[ext]'
+        }
       }
     ]
   },
