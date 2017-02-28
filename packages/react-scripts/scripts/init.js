@@ -149,6 +149,7 @@ function isReactInstalled(appPackage) {
 
   return (
     typeof dependencies.react !== 'undefined' &&
-    typeof dependencies['react-dom'] !== 'undefined'
+    typeof dependencies['react-dom'] !== 'undefined' &&
+    typeof dependencies['react-redux-app-container'] !== 'undefined'
   )
 }
