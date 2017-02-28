@@ -248,8 +248,13 @@ connection.onmessage = function(e) {
   case 'hash':
     handleAvailableHash(message.data);
     break;
+  case 'still-ok':
   case 'ok':
     handleSuccess();
+    break;
+  case 'content-changed':
+    // Triggered when a file from `contentBase` changed.
+    window.location.reload();
     break;
   case 'warnings':
     handleWarnings(message.data);
