@@ -164,6 +164,7 @@ module.exports = {
         options: {
           babelrc: false,
           presets: [require.resolve('babel-preset-react-app')],
+          plugins: ['syntax-dynamic-import'],
         },
         // @remove-on-eject-end
       },
