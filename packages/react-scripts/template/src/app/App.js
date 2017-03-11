@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { IndexLink, Link } from 'react-router'
 import logo from './logo.svg'
-import './App.css'
+import './App.scss'
 
 class App extends Component {
     render () {
