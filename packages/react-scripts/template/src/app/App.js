@@ -5,7 +5,7 @@ import HomeRoute from '../routes/Home'
 import AboutRoute from '../routes/About'
 
 import logo from './logo.svg'
-import './App.css'
+import './App.scss'
 
 class App extends Component {
     render () {
