@@ -214,7 +214,19 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1!postcss!sass')
+        loader: ExtractTextPlugin.extract(Object.assign({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1
+              }
+            }, {
+                loader: "sass-loader"
+            }
+          ]
+        }, extractTextPluginOptions))
       },
       // "file" loader for svg
       {

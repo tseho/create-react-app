@@ -200,7 +200,16 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: 'style!css?importLoaders=1!postcss!sass'
+        use: [
+            'style-loader', {
+                loader: 'css-loader',
+                options: {
+                    importLoaders: 1
+                }
+            }, {
+                loader: "sass-loader"
+            }
+        ]
       },
       // "file" loader for svg
       {
